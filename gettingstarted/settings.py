@@ -152,6 +152,16 @@ if IS_HEROKU_APP:
             ssl_require=True,
         ),
     }
+elif IS_RAILWAY_APP:
+    # Railway database configuration
+    DATABASES = {
+        "default": dj_database_url.config(
+            env="DATABASE_URL",
+            conn_max_age=600,
+            conn_health_checks=True,
+            ssl_require=False,  # Railway handles SSL differently
+        ),
+    }
 else:
     # When running locally in development or in CI, a sqlite database file will be used instead
     # to simplify initial setup. Longer term it's recommended to use Postgres locally too.
