@@ -20,7 +20,9 @@ def db(request):
     # When running the app locally:
     #   1. You have run `./manage.py migrate` to create the `hello_greeting` database table.
 
+    random_string = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
     greeting = Greeting()
+    greeting.random_string = random_string
     greeting.save()
 
     greetings = Greeting.objects.all()
