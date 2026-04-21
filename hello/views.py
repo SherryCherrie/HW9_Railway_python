@@ -2,6 +2,7 @@ from django.shortcuts import render
 import random
 import string
 from .models import TimestampAndRandomString
+from django.db import connection
 
 # Create your views here.
 
@@ -20,6 +21,14 @@ def db(request):
     #
     # When running the app locally:
     #   1. You have run `./manage.py migrate` to create the `hello_greeting` database table.
+
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS table_timestamp_and_random_string (
+                tick timestamp DEFAULT CURRENT_TIMESTAMP,
+                random_string varchar(50)
+            )
+        """)
 
     random_string = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
 
