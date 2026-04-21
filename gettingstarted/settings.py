@@ -156,7 +156,7 @@ elif IS_RAILWAY_APP:
     # Railway database configuration
     DATABASES = {
         "default": dj_database_url.config(
-            env="DATABASE_URL",
+            env="JDBC_DATABASE_URL",
             conn_max_age=600,
             conn_health_checks=True,
             ssl_require=False,  # Railway handles SSL differently
