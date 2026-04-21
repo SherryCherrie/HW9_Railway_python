@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+import random
+import string
 from .models import Greeting
 
 # Create your views here.
