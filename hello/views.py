@@ -25,6 +25,7 @@ def db(request):
     with connection.cursor() as cursor:
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS table_timestamp_and_random_string (
+                id SERIAL PRIMARY KEY,
                 tick timestamp DEFAULT CURRENT_TIMESTAMP,
                 random_string varchar(50)
             )
