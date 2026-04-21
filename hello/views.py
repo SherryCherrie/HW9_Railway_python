@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import random
 import string
-from .models import Greeting
+from .models import TimestampAndRandomString
 
 # Create your views here.
 
@@ -22,10 +22,10 @@ def db(request):
     #   1. You have run `./manage.py migrate` to create the `hello_greeting` database table.
 
     random_string = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
-    greeting = Greeting()
-    greeting.random_string = random_string
-    greeting.save()
 
-    greetings = Greeting.objects.all()
+    new_record = TimestampAndRandomString(random_string=random_string)
+    new_record.save()
 
-    return render(request, "db.html", {"greetings": greetings})
+    records = TimestampAndRandomString.objects.all().order_by('-tick')
+
+    return render(request, "db.html", {"records": records})

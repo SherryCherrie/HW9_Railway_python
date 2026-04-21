@@ -5,13 +5,15 @@
   <div class="container">
 
 
-<h2>Page View Report</h2>
+<h2>Database Records</h2>
 
 
 <ul>
 
-{% for greeting in greetings %}
-    <li>{{ greeting.when }}</li>
+{% for record in records %}
+    <li>
+        Database read at {{ record.0 }} {{ record.1 }}
+    </li>
 {% endfor %}
 
 </ul>
